@@ -1,0 +1,145 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Games API",
+    "description": "Game Library Backend",
+    "version": "1.0.0"
+  },
+  "host": "localhost",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/games/{userid}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/games/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "add-info",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userid": {
+                  "type": "string",
+                  "example": "fasfdsjlfasdoiu"
+                },
+                "gameid": {
+                  "type": "number",
+                  "example": 60
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Forza Horizon 5"
+                },
+                "esrbRating": {
+                  "type": "string",
+                  "example": "E"
+                },
+                "genres": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "metacritic": {
+                  "type": "number",
+                  "example": 82
+                },
+                "playTime": {
+                  "type": "number",
+                  "example": 500
+                },
+                "platforms": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "releaseDate": {
+                  "type": "string",
+                  "example": "2021-05-05"
+                },
+                "updateDate": {
+                  "type": "string",
+                  "example": "2022-08-03"
+                },
+                "completed": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "owned": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "rating": {
+                  "type": "number",
+                  "example": 91
+                },
+                "userPlayTime": {
+                  "type": "number",
+                  "example": 100
+                },
+                "added": {
+                  "type": "string",
+                  "example": "2023-02-06"
+                }
+              },
+              "required": [
+                "userid",
+                "gameid",
+                "name",
+                "esrbRating",
+                "genres",
+                "metacritic",
+                "playTime",
+                "platforms",
+                "releaseDate",
+                "updateDate",
+                "completed",
+                "owned",
+                "rating",
+                "userPlayTime",
+                "added"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}

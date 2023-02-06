@@ -1,0 +1,26 @@
+POST http://localhost:8080/games HTTP/1.1
+content-type: application/json
+
+{
+    "userid": "fasfdsjlfasdoiu",
+    "gameid": 60,
+    "name": "Forza Horizon 5",
+    "esrbRating": "E",
+    "genres": [
+         "Racing",
+         "Mini-Games"          
+    ],
+    "metacritic": 82,
+    "playTime": 500,
+    "platforms": [
+         "PC",
+         "Xbox"           
+    ],
+    "releaseDate": "2021-05-05",
+    "updateDate": "2022-08-03",
+    "completed": false,
+    "owned": true,
+    "rating": 91,
+    "userPlayTime": 100,
+    "added": "2023-02-06"
+}
