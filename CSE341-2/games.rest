@@ -41,9 +41,9 @@ POST http://cse341-2-ky6l.onrender.com/games
 content-type: application/json
 
 {
-    "userid": "fasfdsjlfasdoiu",
+    "userid": "fasfdsjlfasdoou",
     "gameid": 60,
-    "name": "Forza Horizon 5",
+    "name": "Forza Horizon 4",
     "esrbRating": "E",
     "genres": [
          "Racing",
