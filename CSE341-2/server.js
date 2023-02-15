@@ -165,7 +165,7 @@ async function routes() {
 
         //start by creating a new game 
         const games = await client.db("project2").collection("games");
-        const game = req.body;
+        let game = req.body;
         try {
             game = await gameCreateSchema.validateAsync(game);
 
@@ -194,7 +194,7 @@ async function routes() {
         */
 
         const userGames = await client.db("project2").collection("usergames");
-        const userGame = req.body;
+        let userGame = req.body;
         userGame.userid = req.params.userid;
 
         try {
@@ -238,7 +238,7 @@ async function routes() {
         */
 
         const games = await client.db("project2").collection("games");
-        const game = req.body;
+        let game = req.body;
         const gameid = new ObjectId(req.params.gameid);
 
         try {
@@ -296,7 +296,7 @@ async function routes() {
         let userGames = await client.db("project2").collection("usergames");
         const userid = req.params.userid;
         const gameid = req.body.gameid;
-        const userGame = {
+        let userGame = {
             userid: userid,
             gameid: gameid
         };
