@@ -252,7 +252,7 @@ async function routes() {
             }
         }
         catch(e) {
-            res.statusMessage(400).send(e.message);
+            res.status(400).send(e.message);
         }
     });
 

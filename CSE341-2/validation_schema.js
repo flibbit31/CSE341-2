@@ -6,7 +6,7 @@ const userGameSchema = Joi.object({
 });
 
 const gameCreateSchema = Joi.object({
-    name: Joi.string().alphanum().required(),
+    name: Joi.string().required(),
     esrbRating: Joi.string().valid("E", "Everyone10+", "T", "M", "AO").required(),
     genres: Joi.array().items(Joi.string()).required(),
     metacritic: Joi.number().integer().min(1).max(100).required(),
@@ -22,7 +22,7 @@ const gameCreateSchema = Joi.object({
 });
 
 const gameUpdateSchema = Joi.object({
-    name: Joi.string().alphanum(),
+    name: Joi.string(),
     esrbRating: Joi.string().valid("E", "Everyone10+", "T", "M", "AO"),
     genres: Joi.array().items(Joi.string()),
     metacritic: Joi.number().integer().min(1).max(100),

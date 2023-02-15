@@ -68,7 +68,7 @@ PUT http://cse341-2-ky6l.onrender.com/games/63ec7b437965020bc49520bc
 content-type: application/json
 
 {
-    "name": "Forza Horizon 4",
+    "name": "ForzaHorizon5",
     "esrbRating": "E",
     "genres": [
          "Racing",
