@@ -34,10 +34,10 @@ content-type: application/json
 ###PRODUCTION
 
 #Get games with the passed userid
-GET https://cse341-2-ky6l.onrender.com/games/fasfdsjlfasdoiu
+#GET https://cse341-2-ky6l.onrender.com/games/fasfdsjlfasdoiu
 
 #get games with the passed gameid
-GET https://cse341-2-ky6l.onrender.com/games/63ec7b437965020bc49520bc
+GET https://cse341-2-ky6l.onrender.com/games/63ec826f3379d8fcc328a836
 
 ###Add a game
 POST https://cse341-2-ky6l.onrender.com/games 
@@ -67,12 +67,12 @@ content-type: application/json
 
 ###update a game
 
-PUT https://cse341-2-ky6l.onrender.com/games/63ec7b437965020bc49520bc
+PUT https://cse341-2-ky6l.onrender.com/games/63ec826f3379d8fcc328a836
 content-type: application/json
 
 {
     "name": "Forza Horizon 5",
-    "esrbRating": "E",
+    "esrbRating": "N",
     "genres": [
          "Racing",
          "Mini-Games"          
@@ -93,5 +93,5 @@ content-type: application/json
 }
 
 ###delete a game
-DELETE https://cse341-2-ky6l.onrender.com/games/63ec7b437965020bc49520bc
+DELETE https://cse341-2-ky6l.onrender.com/games/63ec826f3379d8fcc328a836
 
