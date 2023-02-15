@@ -36,12 +36,15 @@ content-type: application/json
 #Get games with the passed userid
 GET https://cse341-2-ky6l.onrender.com/games/fasfdsjlfasdoiu
 
+#get games with the passed gameid
+GET https://cse341-2-ky6l.onrender.com/games/63ec7b437965020bc49520bc
+
 ###Add a game
 POST https://cse341-2-ky6l.onrender.com/games 
 content-type: application/json
 
 {
-    "name": "ForzaHorizon4",
+    "name": "Forza Horizon 4",
     "esrbRating": "E",
     "genres": [
          "Racing",
@@ -89,4 +92,6 @@ content-type: application/json
     "added": "2023-02-06"
 }
 
+###delete a game
+DELETE https://cse341-2-ky6l.onrender.com/games/63ec7b437965020bc49520bc
 
