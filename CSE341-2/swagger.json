@@ -5,13 +5,13 @@
     "description": "Game Library Backend",
     "version": "1.0.0"
   },
-  "host": "https://cse341-2-ky6l.onrender.com",
+  "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
-    "/games/{userid}": {
+    "/usergames/{userid}": {
       "get": {
         "description": "",
         "parameters": [
@@ -33,26 +33,122 @@
             "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/games/": {
+      },
       "post": {
         "description": "",
         "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "add-info",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "userid": {
-                  "type": "string",
-                  "example": "fasfdsjlfasdoiu"
-                },
                 "gameid": {
-                  "type": "number",
-                  "example": 60
-                },
+                  "type": "string",
+                  "example": "eqajeflkjadsa"
+                }
+              },
+              "required": [
+                "gameid"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "add-info",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "gameid": {
+                  "type": "string",
+                  "example": "eqajeflkjadsa"
+                }
+              },
+              "required": [
+                "gameid"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/games/{gameid}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "gameid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "gameid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "edit-info",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
                 "name": {
                   "type": "string",
                   "example": "Forza Horizon 5"
@@ -109,8 +205,121 @@
                 }
               },
               "required": [
-                "userid",
-                "gameid",
+                "name",
+                "esrbRating",
+                "genres",
+                "metacritic",
+                "playTime",
+                "platforms",
+                "releaseDate",
+                "updateDate",
+                "completed",
+                "owned",
+                "rating",
+                "userPlayTime",
+                "added"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "gameid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/games/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "add-info",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Forza Horizon 5"
+                },
+                "esrbRating": {
+                  "type": "string",
+                  "example": "E"
+                },
+                "genres": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "metacritic": {
+                  "type": "number",
+                  "example": 82
+                },
+                "playTime": {
+                  "type": "number",
+                  "example": 500
+                },
+                "platforms": {
+                  "type": "array",
+                  "example": [],
+                  "items": {}
+                },
+                "releaseDate": {
+                  "type": "string",
+                  "example": "2021-05-05"
+                },
+                "updateDate": {
+                  "type": "string",
+                  "example": "2022-08-03"
+                },
+                "completed": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "owned": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "rating": {
+                  "type": "number",
+                  "example": 91
+                },
+                "userPlayTime": {
+                  "type": "number",
+                  "example": 100
+                },
+                "added": {
+                  "type": "string",
+                  "example": "2023-02-06"
+                }
+              },
+              "required": [
                 "name",
                 "esrbRating",
                 "genres",
