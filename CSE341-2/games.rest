@@ -37,7 +37,7 @@ content-type: application/json
 GET https://cse341-2-ky6l.onrender.com/games/fasfdsjlfasdoiu
 
 ###Add a game
-POST http://cse341-2-ky6l.onrender.com/games 
+POST https://cse341-2-ky6l.onrender.com/games 
 content-type: application/json
 
 {
@@ -64,11 +64,11 @@ content-type: application/json
 
 ###update a game
 
-PUT http://cse341-2-ky6l.onrender.com/games/63ec7b437965020bc49520bc
+PUT https://cse341-2-ky6l.onrender.com/games/63ec7b437965020bc49520bc
 content-type: application/json
 
 {
-    "name": "ForzaHorizon5",
+    "name": "Forza Horizon 5",
     "esrbRating": "E",
     "genres": [
          "Racing",
