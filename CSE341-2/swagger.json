@@ -5,10 +5,10 @@
     "description": "Game Library Backend",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "https://cse341-2-ky6l.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/usergames/{userid}": {
