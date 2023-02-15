@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //make this work with a frontend
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
         "Access-Control-Allow-headers",
@@ -25,7 +25,7 @@ app.use((req, res, next) => {
     res.setHeader("Content-Type", "application/json");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     next();
-}); 
+}); */
 
 //get db.js 
 const ObjectId = require("mongodb").ObjectId;

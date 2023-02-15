@@ -62,5 +62,31 @@ content-type: application/json
     "added": "2023-02-06"
 }
 
+###update a game
+
+PUT http://cse341-2-ky6l.onrender.com/games/63ec7b437965020bc49520bc
+content-type: application/json
+
+{
+    "name": "Forza Horizon 4",
+    "esrbRating": "E",
+    "genres": [
+         "Racing",
+         "Mini-Games"          
+    ],
+    "metacritic": 82,
+    "playTime": 500,
+    "platforms": [
+         "PC",
+         "Xbox"           
+    ],
+    "releaseDate": "2021-05-05",
+    "updateDate": "2022-08-03",
+    "completed": false,
+    "owned": true,
+    "rating": 91,
+    "userPlayTime": 100,
+    "added": "2023-02-06"
+}
 
 
