@@ -16,16 +16,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //make this work with a frontend
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
         "Access-Control-Allow-headers",
         "Origin, X-Requested-Width, Content-Type, Accept, Z-Key"
     );
-    res.setHeader("Content-Type", "application/json");
+    //res.setHeader("Content-Type", "application/json");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     next();
-}); */
+}); 
 
 //get db.js 
 const ObjectId = require("mongodb").ObjectId;
@@ -40,8 +40,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 const { userGameSchema, gameCreateSchema, gameUpdateSchema } = require("./validation_schema");
 
 //set up Google authentication
-const { google } = require("googleapis");
-const { oAuthClient, authURL } = require("./google_setup");
+const { oAuthClient, authURL } = require("./google_setup.js");
 const axios = require("axios");
 
 //routes
@@ -63,18 +62,17 @@ async function routes() {
             //console.log(code);
 
             let { tokens } = await oAuthClient.getToken(code);
-            oAuthClient.setCredentials(tokens); 
+            //oAuthClient.setCredentials(tokens); 
 
             //console.log(tokens);
 
-            const data = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${tokens.access_token}`);
-            //console.log(data);
+            const profile = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${tokens.access_token}`);
+            console.log(profile.data);
 
             //return the profile information to the 
 
-            if(data.id) {
-                res.status(200).json(data);
-            }
+            console.log("Returning data");
+            res.status(200).json(profile.data);
         }
 
         else if(req.query.error) {
