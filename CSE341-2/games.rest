@@ -31,10 +31,13 @@ content-type: application/json
     "added": "2023-02-06"
 }
 
-###attempt to get to login page
+###Get to login page
 GET http://localhost:8080/auth/ HTTP/1.1
 
 ###PRODUCTION
+
+###Get to login page
+GET https://cse341-2-ky6l.onrender.com/auth/
 
 #Get games with the passed userid
 #GET https://cse341-2-ky6l.onrender.com/games/fasfdsjlfasdoiu
