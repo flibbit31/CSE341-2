@@ -5,12 +5,21 @@
     "description": "Game Library Backend",
     "version": "1.0.0"
   },
-  "host": "https://cse341-2-ky6l.onrender.com",
+  "host": "localhost:8080",
   "basePath": "/",
-  "schemes": [
-    "https"
-  ],
+  "schemes": "[\"http\"]",
   "paths": {
+    "/auth/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/usergames/{userid}": {
       "get": {
         "description": "",

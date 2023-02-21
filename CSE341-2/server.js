@@ -39,11 +39,48 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 //set up validation
 const { userGameSchema, gameCreateSchema, gameUpdateSchema } = require("./validation_schema");
 
+//set up Google authentication
+const { google } = require("googleapis");
+const { oAuthClient, authURL } = require("./google_setup");
+const axios = require("axios");
+
 //routes
 routes();
 
 async function routes() {
     const client = await databaseConnect();
+
+    //Google login route
+    app.get("/auth/", async function (req, res) {
+        console.log("auth");
+        res.writeHead(301, { "Location": authURL });
+        res.send();
+    });
+
+    app.get(`${process.env.REDIRECT_URL_WITHOUT}`, async function (req, res) {
+        if(req.query.code) {
+            const code = req.query.code;
+            //console.log(code);
+
+            let { tokens } = await oAuthClient.getToken(code);
+            oAuthClient.setCredentials(tokens); 
+
+            //console.log(tokens);
+
+            const data = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${tokens.access_token}`);
+            //console.log(data);
+
+            //return the profile information to the 
+
+            if(data.id) {
+                res.status(200).json(data);
+            }
+        }
+
+        else if(req.query.error) {
+            res.status(403).send(req.query.error);
+        }
+    });
 
     //get games by userid
     app.get("/usergames/:userid", async function (req, res) {
