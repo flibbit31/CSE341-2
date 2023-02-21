@@ -12,6 +12,6 @@ const authURL = oAuthClient.generateAuthUrl({
     include_granted_scopes: true
 });
 
-console.log(authURL);
+//console.log(authURL);
 
 module.exports = { oAuthClient, authURL };
