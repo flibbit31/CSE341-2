@@ -1,16 +1,14 @@
 ###DEVELOPMENT
 
-###Get games with the passed userid
-GET http://localhost:8080/games/63ec826f3379d8fcc328a836 HTTP/1.1
+###Get games with the passed gameid
+GET http://localhost:8080/games/63f4bb6e367df00435553dc5 HTTP/1.1
 
 ###Add a game
 POST http://localhost:8080/games HTTP/1.1
 content-type: application/json
 
 {
-    "userid": "fasfdsjlfasdoiu",
-    "gameid": 60,
-    "name": "Forza Horizon 5",
+    "name": "Forza Horizon 3",
     "esrbRating": "E",
     "genres": [
          "Racing",
@@ -31,16 +29,45 @@ content-type: application/json
     "added": "2023-02-06"
 }
 
+###delete a game
+DELETE http://localhost:8080/games/63fe91685be3b16c24e7a477 HTTP/1.1
+
 ###Get to login page
 GET http://localhost:8080/auth/ HTTP/1.1
+
+###Get a user's game list
+GET http://localhost:8080/usergames/ HTTP/1.1
+content-type: application/json
+
+{
+    "access_token": "ya29.a0AVvZVsoWtdY3rfaeGeeMfYxulN2pIyzTHadlPZS6cZvWZ-CDazWGOyn7rzFDOitGi1bCCVyLtWJJdYmIxzsRwUAZOD6Rd5h4VlKGXGzij9AYa2hlh6v9ECMx5gos0O3jDGasW-e_yiC3QGxFE6l5KEnlKFqg-waCgYKAbkSARISFQGbdwaIpkv0hB4k5qbAWF6fgh1TdA0165"
+}
+
+###Add a game to the a user's account
+POST http://localhost:8080/usergames/ HTTP/1.1
+content-type: application/json
+
+{
+    "access_token": "ya29.a0AVvZVsoWtdY3rfaeGeeMfYxulN2pIyzTHadlPZS6cZvWZ-CDazWGOyn7rzFDOitGi1bCCVyLtWJJdYmIxzsRwUAZOD6Rd5h4VlKGXGzij9AYa2hlh6v9ECMx5gos0O3jDGasW-e_yiC3QGxFE6l5KEnlKFqg-waCgYKAbkSARISFQGbdwaIpkv0hB4k5qbAWF6fgh1TdA0165",
+    "gameid": "63fe91bc5be3b16c24e7a478"
+}
+
+###Delete a usergame
+DELETE http://localhost:8080/usergames/ HTTP/1.1
+content-type: application/json
+
+{
+    "access_token": "ya29.a0AVvZVsqfpoM52H3w4c0VnGspFVCRY33IojIo-D7GzT3Hn4tEcVxgbShQILFIGW5j4vwaSyF9HurNOOOYkmzNA0Rt2Ht0dGHmhNjSXFAFgbV9eoYC3-rVN7bWo52IXpnk4u8qLA4EzK28K-RvmayipGneQd4F1AaCgYKARsSARISFQGbdwaIyXfn1dpahF0tlPXts7V4WQ0165",
+    "gameid": "63f4bb6e367df00435553dc5"
+}
+
+
+
 
 ###PRODUCTION
 
 ###Get to login page
 GET https://cse341-2-ky6l.onrender.com/auth/
-
-#Get games with the passed userid
-#GET https://cse341-2-ky6l.onrender.com/games/fasfdsjlfasdoiu
 
 #get games with the passed gameid
 GET https://cse341-2-ky6l.onrender.com/games/63ec826f3379d8fcc328a836
@@ -101,3 +128,28 @@ content-type: application/json
 ###delete a game
 DELETE https://cse341-2-ky6l.onrender.com/games/63ec826f3379d8fcc328a836
 
+###Get a user's game list
+GET https://cse341-2-ky6l.onrender.com/usergames/ 
+content-type: application/json
+
+{
+    "access_token": "ya29.a0AVvZVsoWtdY3rfaeGeeMfYxulN2pIyzTHadlPZS6cZvWZ-CDazWGOyn7rzFDOitGi1bCCVyLtWJJdYmIxzsRwUAZOD6Rd5h4VlKGXGzij9AYa2hlh6v9ECMx5gos0O3jDGasW-e_yiC3QGxFE6l5KEnlKFqg-waCgYKAbkSARISFQGbdwaIpkv0hB4k5qbAWF6fgh1TdA0165"
+}
+
+###Add a game to the a user's account
+POST https://cse341-2-ky6l.onrender.com/usergames/ 
+content-type: application/json
+
+{
+    "access_token": "ya29.a0AVvZVsoWtdY3rfaeGeeMfYxulN2pIyzTHadlPZS6cZvWZ-CDazWGOyn7rzFDOitGi1bCCVyLtWJJdYmIxzsRwUAZOD6Rd5h4VlKGXGzij9AYa2hlh6v9ECMx5gos0O3jDGasW-e_yiC3QGxFE6l5KEnlKFqg-waCgYKAbkSARISFQGbdwaIpkv0hB4k5qbAWF6fgh1TdA0165",
+    "gameid": "63fe7e9c1483ff90acddbf3a"
+}
+
+###Delete a usergame
+DELETE https://cse341-2-ky6l.onrender.com/usergames/ 
+content-type: application/json
+
+{
+    "access_token": "ya29.a0AVvZVsoWtdY3rfaeGeeMfYxulN2pIyzTHadlPZS6cZvWZ-CDazWGOyn7rzFDOitGi1bCCVyLtWJJdYmIxzsRwUAZOD6Rd5h4VlKGXGzij9AYa2hlh6v9ECMx5gos0O3jDGasW-e_yiC3QGxFE6l5KEnlKFqg-waCgYKAbkSARISFQGbdwaIpkv0hB4k5qbAWF6fgh1TdA0165",
+    "gameid": "63fe7e9c1483ff90acddbf3a"
+}

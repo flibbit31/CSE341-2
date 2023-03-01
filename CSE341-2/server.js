@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //make this work with a frontend
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
         "Access-Control-Allow-headers",
@@ -25,7 +25,7 @@ app.use((req, res, next) => {
     //res.setHeader("Content-Type", "application/json");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     next();
-}); 
+}); */
 
 //get db.js 
 const ObjectId = require("mongodb").ObjectId;
@@ -37,7 +37,7 @@ const swaggerDoc = require("./swagger.json");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 //set up validation
-const { userGameSchema, gameCreateSchema, gameUpdateSchema } = require("./validation_schema");
+const { userGameGetSchema, userGameCreateSchema, gameCreateSchema, gameUpdateSchema } = require("./validation_schema");
 
 //set up Google authentication
 const { oAuthClient, authURL } = require("./google_setup.js");
@@ -66,13 +66,15 @@ async function routes() {
 
             //console.log(tokens);
 
-            const profile = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${tokens.access_token}`);
-            console.log(profile.data);
+            /*const profile = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${tokens.access_token}`);
+            //console.log(profile.data);
 
             //return the profile information to the 
 
             console.log("Returning data");
-            res.status(200).json(profile.data);
+            res.status(200).json(profile.data);*/
+
+            res.status(200).json(tokens);
         }
 
         else if(req.query.error) {
@@ -81,11 +83,23 @@ async function routes() {
     });
 
     //get games by userid
-    app.get("/usergames/:userid", async function (req, res) {
+    app.get("/usergames/", async function (req, res) {
+        /* #swagger.parameters['add-info'] = {
+            in: 'body',
+            schema: {
+                $access_token: 'adfasdfasdfa'
+            }
+        }
+        */
+
         try {
             const userGames = await client.db("project2").collection("usergames");
 
-            const userid = req.params.userid;
+            const token = req.body.access_token;
+            const tokenInfo = await axios.get(`https://oauth2.googleapis.com/tokeninfo?access_token=${token}`);
+            const userid = tokenInfo.data.sub;
+
+            //const userid = 
             if(userid) {
                 const foundDocs = await userGames.find({
                     userid: userid
@@ -219,21 +233,35 @@ async function routes() {
         }
     });
 
-    app.post("/usergames/:userid", async function(req, res) {
+    app.post("/usergames/", async function(req, res) {
         /* #swagger.parameters['add-info'] = {
             in: 'body',
             schema: {
+                $access_token: 'adfasdfasdfa',
                 $gameid: 'eqajeflkjadsa'
             }
         }
         */
 
         const userGames = await client.db("project2").collection("usergames");
-        let userGame = req.body;
-        userGame.userid = req.params.userid;
+        let reqBody = req.body;
+        
 
         try {
-            userGame = await userGameSchema.validateAsync(userGame);
+            console.log("before validation post usergame");
+            reqBody = await userGameCreateSchema.validateAsync(reqBody);
+            console.log("validated post usergame");
+            const gameid = reqBody.gameid;
+            const token = reqBody.access_token;
+
+            const tokeninfo = await axios.get(`https://oauth2.googleapis.com/tokeninfo?access_token=${token}`);
+            //console.log(tokeninfo);
+
+            const userGame =  {
+                userid: tokeninfo.data.sub,
+                gameid: gameid
+            };
+
             try {
                 userGames.insertOne(userGame);
                 res.status(201).json(userGame._id);
@@ -274,7 +302,7 @@ async function routes() {
 
         const games = await client.db("project2").collection("games");
         let game = req.body;
-        const gameid = new ObjectId(req.params.gameid);
+        
 
         try {
             game = await gameUpdateSchema.validateAsync(game);
@@ -319,36 +347,40 @@ async function routes() {
         
     });
 
-    app.delete("/usergames/:userid", async function(req, res) {
+    app.delete("/usergames/", async function(req, res) {
         /* #swagger.parameters['add-info'] = {
             in: 'body',
             schema: {
+                $access_token: 'adfasdfasdfa',
                 $gameid: 'eqajeflkjadsa'
             }
         }
         */
 
         let userGames = await client.db("project2").collection("usergames");
-        const userid = req.params.userid;
-        const gameid = req.body.gameid;
-        let userGame = {
-            userid: userid,
-            gameid: gameid
-        };
+        let reqBody = req.body;
 
         try {
-            userGame = await userGameSchema.validateAsync(userGame);
-            const response = await userGames.deleteMany({ gameid: gameid, userid: userid });
-        if(response.deletedCount === 1) {
-            res.status(204).send();
-        }
-        else if(response.deletedCount === 0) {
-            res.status(400).send("No usergames found with the given information");
-        }
+            reqBody = await userGameCreateSchema.validateAsync(reqBody);
 
-        else {
-            res.status(500).send("More than one game with the given information was found. The database may be malformed.");
-        }
+            const token = reqBody.access_token;
+            const tokenInfo = await axios.get(`https://oauth2.googleapis.com/tokeninfo?access_token=${token}`);
+            const userid = tokenInfo.data.sub;
+    
+            const gameid = reqBody.gameid;
+
+            const response = await userGames.deleteMany({ gameid: gameid, userid: userid });
+
+            if(response.deletedCount === 1) {
+                res.status(204).send();
+            }
+            else if(response.deletedCount === 0) {
+                res.status(400).send("No usergames found with the given information");
+            }
+
+            else {
+                res.status(500).send("More than one game with the given information was found. The database may be malformed.");
+            }
         }
         catch (e) {
             res.status(400).send(e.message);
@@ -357,4 +389,6 @@ async function routes() {
 
     app.listen(port, () => console.log("Started Server listening on port " + port));
 }
+
+
 

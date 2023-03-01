@@ -20,15 +20,25 @@
         }
       }
     },
-    "/usergames/{userid}": {
+    "/usergames/": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "userid",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "name": "add-info",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "access_token": {
+                  "type": "string",
+                  "example": "adfasdfasdfa"
+                }
+              },
+              "required": [
+                "access_token"
+              ]
+            }
           }
         ],
         "responses": {
@@ -47,23 +57,22 @@
         "description": "",
         "parameters": [
           {
-            "name": "userid",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "add-info",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
+                "access_token": {
+                  "type": "string",
+                  "example": "adfasdfasdfa"
+                },
                 "gameid": {
                   "type": "string",
                   "example": "eqajeflkjadsa"
                 }
               },
               "required": [
+                "access_token",
                 "gameid"
               ]
             }
@@ -85,23 +94,22 @@
         "description": "",
         "parameters": [
           {
-            "name": "userid",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "add-info",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
+                "access_token": {
+                  "type": "string",
+                  "example": "adfasdfasdfa"
+                },
                 "gameid": {
                   "type": "string",
                   "example": "eqajeflkjadsa"
                 }
               },
               "required": [
+                "access_token",
                 "gameid"
               ]
             }

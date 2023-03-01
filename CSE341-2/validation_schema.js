@@ -1,7 +1,11 @@
 const Joi = require("joi");
 
-const userGameSchema = Joi.object({
-    userid: Joi.string().required(),
+const userGameGetSchema = Joi.object({
+    access_token: Joi.required()
+});
+
+const userGameCreateSchema = Joi.object({
+    access_token: Joi.required(),
     gameid: Joi.string().required()
 });
 
@@ -38,7 +42,8 @@ const gameUpdateSchema = Joi.object({
 });
 
 module.exports = {
-    userGameSchema,
+    userGameGetSchema,
+    userGameCreateSchema,
     gameCreateSchema,
     gameUpdateSchema
 };
