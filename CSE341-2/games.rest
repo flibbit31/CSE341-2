@@ -40,7 +40,7 @@ GET http://localhost:8080/usergames/ HTTP/1.1
 content-type: application/json
 
 {
-    "access_token": "ya29.a0AVvZVsoWtdY3rfaeGeeMfYxulN2pIyzTHadlPZS6cZvWZ-CDazWGOyn7rzFDOitGi1bCCVyLtWJJdYmIxzsRwUAZOD6Rd5h4VlKGXGzij9AYa2hlh6v9ECMx5gos0O3jDGasW-e_yiC3QGxFE6l5KEnlKFqg-waCgYKAbkSARISFQGbdwaIpkv0hB4k5qbAWF6fgh1TdA0165"
+    "access_token": "ya29.a0AVvZVsrC8NP0uutPfosaHz5cIRsxqykoUHMDg1AWJESPe8ArljX5fPQUzr5qkg6VRHxE1xtP2uOmfQ_QioEl4EKsZhvnoW1cY1ga8toeAmpORKgc3cggZeqTlo0nVk090wldu-t6nsf3CJ-0ZBeo0ES-ysX4aQaCgYKAaUSARISFQGbdwaICA1rjIjnv8vcCR73wZsXCg0165"
 }
 
 ###Add a game to the a user's account
@@ -69,25 +69,25 @@ content-type: application/json
 ###Get to login page
 GET https://cse341-2-ky6l.onrender.com/auth/
 
-#get games with the passed gameid
-GET https://cse341-2-ky6l.onrender.com/games/63ec826f3379d8fcc328a836
+###get all games
+
+###get games with the passed gameid
+GET https://cse341-2-ky6l.onrender.com/games/
 
 ###Add a game
 POST https://cse341-2-ky6l.onrender.com/games 
 content-type: application/json
 
 {
-    "name": "Forza Horizon 4",
-    "esrbRating": "E",
+    "name": "Xenoblade Chronicles 3",
+    "esrbRating": "T",
     "genres": [
-         "Racing",
-         "Mini-Games"          
+         "RPG"        
     ],
     "metacritic": 82,
     "playTime": 500,
     "platforms": [
-         "PC",
-         "Xbox"           
+         "Switch"        
     ],
     "releaseDate": "2021-05-05",
     "updateDate": "2022-08-03",
@@ -100,23 +100,21 @@ content-type: application/json
 
 ###update a game
 
-PUT https://cse341-2-ky6l.onrender.com/games/63ec826f3379d8fcc328a836
+PUT https://cse341-2-ky6l.onrender.com/games/63fe9a61635b27661cb768d5
 content-type: application/json
 
 {
-    "name": "Forza Horizon 5",
-    "esrbRating": "N",
+    "name": "Xenoblade Chronicles 3",
+    "esrbRating": "T",
     "genres": [
-         "Racing",
-         "Mini-Games"          
+         "RPG"        
     ],
     "metacritic": 82,
     "playTime": 500,
     "platforms": [
-         "PC",
-         "Xbox"           
+         "Switch"        
     ],
-    "releaseDate": "2021-05-05",
+    "releaseDate": "2022-05-05",
     "updateDate": "2022-08-03",
     "completed": false,
     "owned": true,
@@ -126,14 +124,14 @@ content-type: application/json
 }
 
 ###delete a game
-DELETE https://cse341-2-ky6l.onrender.com/games/63ec826f3379d8fcc328a836
+DELETE https://cse341-2-ky6l.onrender.com/games/63fe98e0635b27661cb768d4
 
 ###Get a user's game list
 GET https://cse341-2-ky6l.onrender.com/usergames/ 
 content-type: application/json
 
 {
-    "access_token": "ya29.a0AVvZVsoWtdY3rfaeGeeMfYxulN2pIyzTHadlPZS6cZvWZ-CDazWGOyn7rzFDOitGi1bCCVyLtWJJdYmIxzsRwUAZOD6Rd5h4VlKGXGzij9AYa2hlh6v9ECMx5gos0O3jDGasW-e_yiC3QGxFE6l5KEnlKFqg-waCgYKAbkSARISFQGbdwaIpkv0hB4k5qbAWF6fgh1TdA0165"
+    "access_token": "ya29.a0AVvZVsrC8NP0uutPfosaHz5cIRsxqykoUHMDg1AWJESPe8ArljX5fPQUzr5qkg6VRHxE1xtP2uOmfQ_QioEl4EKsZhvnoW1cY1ga8toeAmpORKgc3cggZeqTlo0nVk090wldu-t6nsf3CJ-0ZBeo0ES-ysX4aQaCgYKAaUSARISFQGbdwaICA1rjIjnv8vcCR73wZsXCg0165"
 }
 
 ###Add a game to the a user's account
@@ -142,7 +140,7 @@ content-type: application/json
 
 {
     "access_token": "ya29.a0AVvZVsoWtdY3rfaeGeeMfYxulN2pIyzTHadlPZS6cZvWZ-CDazWGOyn7rzFDOitGi1bCCVyLtWJJdYmIxzsRwUAZOD6Rd5h4VlKGXGzij9AYa2hlh6v9ECMx5gos0O3jDGasW-e_yiC3QGxFE6l5KEnlKFqg-waCgYKAbkSARISFQGbdwaIpkv0hB4k5qbAWF6fgh1TdA0165",
-    "gameid": "63fe7e9c1483ff90acddbf3a"
+    "gameid": "63fe98e0635b27661cb768d4"
 }
 
 ###Delete a usergame

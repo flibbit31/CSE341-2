@@ -302,7 +302,7 @@ async function routes() {
 
         const games = await client.db("project2").collection("games");
         let game = req.body;
-        
+        const gameid = req.params.gameid;
 
         try {
             game = await gameUpdateSchema.validateAsync(game);
